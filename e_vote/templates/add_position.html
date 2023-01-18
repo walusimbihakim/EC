@@ -1,0 +1,38 @@
+{% extends './base.html' %} {% block content %} {% load crispy_forms_tags %}
+
+<form method="POST">
+  {% csrf_token %} {{form|crispy}}
+  <input type="submit" class="btn btn-success" />
+</form>
+
+<table class="table table-hover">
+  <thread>
+    <tr>
+      <th scope="col">NO.</th>
+      <th scope="col">position</th>
+    </tr>
+  </thread>
+  <tbody>
+    {% for position in position %}
+    <tr>
+      <th scope="row">{{position.id}}</th>
+      <th scope="row">{{position.title}}</th>
+      <td>{{position.id}}</td>
+      <td>{{position.title}}</td>
+      <td>
+        <a href="{% url 'edit_position_page' position.id %}">
+          <i class="material-icons">edit</i></a
+        >|
+
+        <a
+          href="{% url 'delete_position_page' position.id %}"
+          onclick="return confirm('Are you sure you want to delete this position?')"
+          ><i class="material-icons">delete</i></a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+<{% extends './master.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<body>
+    <h2>Edit - {{vote.vote_id}}</h2>
+
+    <div class="container">
+        <form method="POST">
+             {% csrf_token %}
+             {{form|crispy}}
+
+            <input type ="submit" class="btn btn-success">
+            {% if message %}
+            {{message}}
+         {% endif %}
+
+        </form>
+    </div>
+    
+</body>
+{% endblock content %}
+</html>

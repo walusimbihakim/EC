@@ -1,0 +1,38 @@
+<html>
+  {% load static %}
+  <head>
+    <title>Candidate PDF</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  </head>
+
+  <body>
+    <h2><center>Candidates' List</center></h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">name</th>
+
+          <th scope="col">address</th>
+          <th scope="col">gender</th>
+          <th scope="col">email</th>
+          <th scope="col">course</th>
+          <th scope="col">contact</th>
+          <th scope="col">position</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for Candidate in candidates %}
+        <tr>
+          <td>{{Candidate.name}}</td>
+          <td>{{Candidate.address}}</td>
+          <td>{{Candidate.gender}}</td>
+          <td>{{Candidate.email}}</td>
+          <td>{{Candidate.course}}</td>
+          <td>{{Candidate.contact}}</td>
+          <td>{{Candidate.position}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+{% extends './master.html' %}
+   {% block content %}
+   {% load crispy_forms_tags %}
+<center>
+    <h1>Add Candidate</h1>
+</center>
+    <div class ="container">
+    <form method ="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type ="submit" class="btn btn-success">
+    </form>
+    <a href="{% url 'candidate_pdf_page' %}"
+    <button type="button" class="btn btn-primary">Generate PDF</button>
+</a>
+
+    {% if message %}
+      {{message}}
+    {% endif %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                
+                <th scope="col">name </th>
+               
+                <th scope ="col">address</th>
+                <th scope ="col">gender</th>
+                <th scope ="col">email</th>
+                <th scope ="col">course</th>
+                <th scope ="col">contact</th>
+                <th scope ="col">position</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for Candidate in candidates %}
+           <tr>
+           
+        
+            
+            <td>{{Candidate.name}}</td>
+            <td>{{Candidate.address}}</td>
+            <td>{{Candidate.gender}}</td>
+            <td>{{Candidate.email}}</td>
+            <td>{{Candidate.course}}</td>
+            <td>{{Candidate.contact}}</td>
+            <td>{{Candidate.position}}</td>
+            <td>
+                
+                <a href="{% url 'edit_candidate_page' Candidate.id %}"> Edit</a>|
+                
+                <a href="{% url 'delete_candidate_page'  Candidate.id %}" onclick="return confirm('Are you sure you want to delete this candidate?')">Delete</a>
+            </td>
+        </tr>
+       {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+   
+    
+</body>
+{% endblock content %}
+</html>
